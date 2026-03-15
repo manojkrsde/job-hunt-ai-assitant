@@ -34,7 +34,7 @@ with st.sidebar:
     
     # Pre-load sample resume if available
     try:
-        with open("data/sample_resume.txt", "r", encoding="utf-8") as f:
+        with open("sample-data/sample_resume.txt", "r", encoding="utf-8") as f:
             sample_resume = f.read()
     except:
         sample_resume = ""

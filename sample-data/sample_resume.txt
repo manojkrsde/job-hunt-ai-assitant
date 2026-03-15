@@ -1,0 +1,28 @@
+Suman Saurabh Punjab, India Email: suman@email.com | Phone:
++91-XXXXXXXXXX 
+
+Professional Summary 
+- Python Developer with strong knowledge of backend
+development, APIs, and automation. Experienced in building scalable
+applications, writing clean code, and working with databases. Passionate
+about problem-solving, performance optimization, and learning modern
+technologies.
+
+Technical Skills Languages: 
+- Python, Java, SQL Frameworks: Django, Flask,
+FastAPI Databases: PostgreSQL, MySQL, SQLite Tools: Git, Docker, Linux,
+Postman Concepts: OOP, REST APIs, Data Structures, Software Design
+
+Projects Task Management API – Built a REST API using Python and FastAPI
+with PostgreSQL for task tracking and authentication.
+
+Data Automation Tool – Developed a Python script using Pandas to process
+large datasets and generate automated reports.
+
+Web Scraper – Created a Python-based web scraping tool using Requests
+and BeautifulSoup to collect structured data.
+
+Education Bachelor’s Degree in Computer Science
+
+Additional Linux user | Git version control | Strong problem-solving
+skills
