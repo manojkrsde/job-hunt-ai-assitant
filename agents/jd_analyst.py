@@ -4,8 +4,9 @@ from utils.config import GEMINI_API_KEY
 
 # Initialize the LLM
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
-    google_api_key=GEMINI_API_KEY
+    model="gemini/gemini-3.1-flash-lite-preview",
+    google_api_key=GEMINI_API_KEY,
+    temperature=0.7
 )
 
 def get_jd_analyst_agent():

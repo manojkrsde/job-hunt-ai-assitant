@@ -81,7 +81,8 @@ def run_pipeline(job_data, resume_text, user_bio):
     crew = Crew(
         agents=[analyst_agent, resume_agent, messaging_agent],
         tasks=[analysis_task, resume_task, messaging_task],
-        process=Process.sequential
+        process=Process.sequential,
+        max_rpm=10  # To avoid hitting API rate limits, adjust as needed based on your API quotas, or set to None for no limit
     )
 
     result = crew.kickoff()

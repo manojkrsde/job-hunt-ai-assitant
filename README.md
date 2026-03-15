@@ -41,7 +41,7 @@ USAJOBS_API_KEY="your_key_here"
 
 ### 4. Running the App
 ```bash
-streamlit run streamlit_app.py
+streamlit run app.py
 ```
 
 ## 📜 License
