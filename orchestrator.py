@@ -86,30 +86,23 @@ def run_pipeline(job_data, resume_text, user_bio):
     )
 
     result = crew.kickoff()
-    
-    # --- Output Tracking & Saving ---
+
     try:
-        # CrewAI tasks usually store output in .output property
+        # 1. Manually grab the output from all tasks
+        analyst_output = str(analysis_task.output)
         resume_agent_output = str(resume_task.output)
+        messaging_output = str(messaging_task.output)
         
-        resume_summary = extract_between_markers(
-            resume_agent_output, 
-            "<<RESUME_SUMMARY>>", 
-            "<<COVER_LETTER>>"
-        )
+        # 2. Extract specific parts for logging
+        resume_summary = extract_between_markers(resume_agent_output, "<<RESUME_SUMMARY>>", "<<COVER_LETTER>>")
+        cover_letter = extract_between_markers(resume_agent_output, "<<COVER_LETTER>>")
         
-        cover_letter = extract_between_markers(
-            resume_agent_output, 
-            "<<COVER_LETTER>>"
-        )
-        
-        # 1. Log the application
+        # 3. Log the application
         if resume_summary:
-             # Basic cleanup to log a concise summary if it's too long
              cleaned_summary = resume_summary[:200] + "..." if len(resume_summary) > 200 else resume_summary
              log_application(job_title, agency_name, cleaned_summary)
         
-        # 2. Save the cover letter
+        # 4. Save the cover letter
         if cover_letter:
             file_path = save_cover_letter_file(cover_letter)
             print(f"Cover letter saved to: {file_path}")
@@ -117,7 +110,13 @@ def run_pipeline(job_data, resume_text, user_bio):
     except Exception as e:
         print(f"Error saving/logging application data: {e}")
 
-    return result
+    return {
+        "analysis": analyst_output,
+        "resume_summary": resume_summary if resume_summary else "*(Could not extract summary accurately. See raw output.)*\n\n" + resume_agent_output,
+        "cover_letter": cover_letter if cover_letter else "*(Could not extract cover letter accurately. See raw output.)*\n\n" + resume_agent_output,
+        "messaging": messaging_output
+    }
+
 
 if __name__ == "__main__":
     print("This script is designed to be run from the Streamlit app.")

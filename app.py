@@ -85,9 +85,25 @@ if st.session_state.jobs_list:
                 with st.expander(f"Results for: {title}", expanded=True):
                     with st.spinner(f"Processing application for {title}..."):
                         try:
-                            # Call the refactored run_pipeline
-                            final_output = run_pipeline(selected_job, resume_text, user_bio)
-                            st.markdown(final_output)
+                            # Call the refactored run_pipeline (which now returns a dictionary)
+                            result_data = run_pipeline(selected_job, resume_text, user_bio)
+                            
+                            tab1, tab2, tab3, tab4 = st.tabs([
+                                "📊 Job Analysis", 
+                                "📝 Resume Summary", 
+                                "📄 Cover Letter", 
+                                "✉️ Outreach Message"
+                            ])
+                            
+                            with tab1:
+                                st.markdown(result_data.get("analysis", "No analysis generated."))
+                            with tab2:
+                                st.markdown(result_data.get("resume_summary", "No resume summary generated."))
+                            with tab3:
+                                st.markdown(result_data.get("cover_letter", "No cover letter generated."))
+                            with tab4:
+                                st.markdown(result_data.get("messaging", "No outreach message generated."))
+
                             st.success(f"Completed processing for {title}")
 
                         except Exception as e:
@@ -99,7 +115,6 @@ if st.session_state.jobs_list:
                             st.warning("Please ensure your API keys are correct and the models are accessible.")
 
                         finally:
-                            # --- COOLDOWN TIMER RUNS NO MATTER WHAT ---
                             countdown_placeholder = st.empty() 
                             for seconds in range(60, 0, -1):
                                 countdown_placeholder.warning(f"⏳ API Cooldown: Please wait {seconds} seconds to prevent rate limits...")
