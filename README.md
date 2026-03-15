@@ -1,11 +1,9 @@
 # AI Job Hunt Assistant 🚀
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://job-hunt-assistantgit-zmsajx3uqzqst3y8xuzian.streamlit.app/)
-
 A powerful, AI-driven assistant designed to streamline your job search process. Built with **Python**, **CrewAI**, and **Streamlit**.
 
 ## 🔗 Live Demo
-Check out the live application here: [**job-hunt-assistant.streamlit.app**](https://job-hunt-assistantgit-zmsajx3uqzqst3y8xuzian.streamlit.app/)
+Check out the live application here: 
 
 ## ✨ Features
 - **Job Description Analysis**: Extracts key skills and requirements from JD.
